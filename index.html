@@ -20,6 +20,44 @@
             overflow-x: hidden;
         }
 
+        #accessScreen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10000;
+        }
+
+        #accessScreen input {
+            background: #000;
+            color: white;
+            border: 2px solid #ff0000;
+            padding: 12px;
+            width: 260px;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+        }
+
+        #accessScreen button {
+            margin-top: 12px;
+            background: #000;
+            color: white;
+            border: 2px solid #ff0000;
+            padding: 10px 24px;
+            font-size: 16px;
+            cursor: none !important;
+        }
+
+        #accessError {
+            color: #ff0000;
+            margin-top: 12px;
+            display: none;
+        }
+
         h1 {
             text-align: center;
         }
@@ -72,13 +110,20 @@
             height: 48px;
             object-fit: contain;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 10001;
             transform: translate(-6px, -6px);
         }
     </style>
 </head>
 
 <body>
+
+<div id="accessScreen">
+    <div>INSERT_KEYBOARDPROMPT_RESULT</div>
+    <input id="accessInput" type="text" autocomplete="off" autofocus>
+    <button onclick="checkAccess()">ENTER</button>
+    <div id="accessError">ACCESS DENIED</div>
+</div>
 
 <h1>FUTURE</h1>
 
@@ -106,6 +151,25 @@
     const viewer = document.getElementById("viewer");
     const largeImage = document.getElementById("largeImage");
     const customCursor = document.getElementById("customCursor");
+    const accessScreen = document.getElementById("accessScreen");
+    const accessInput = document.getElementById("accessInput");
+    const accessError = document.getElementById("accessError");
+
+    function checkAccess() {
+        if (accessInput.value === "infra") {
+            accessScreen.style.display = "none";
+        } else {
+            accessError.style.display = "block";
+            accessInput.value = "";
+            accessInput.focus();
+        }
+    }
+
+    accessInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAccess();
+        }
+    });
 
     function openImage(index) {
         largeImage.src = images[index];
