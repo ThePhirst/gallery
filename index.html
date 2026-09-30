@@ -12,6 +12,7 @@
             padding: 30px;
             position: relative;
             overflow-x: hidden;
+            cursor: none;
         }
 
         h1 {
@@ -30,7 +31,7 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
-            cursor: pointer;
+            cursor: none;
             border: 2px solid #ff0000;
             border-radius: 0;
             transition: 0.2s;
@@ -40,26 +41,9 @@
             transform: scale(1.03);
         }
 
-        #viewer {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: none;
-        }
-
-        #viewer img {
-            max-width: 90%;
-            max-height: 80%;
-            cursor: none;
-        }
-
         #customCursor {
-            display: none;
             position: fixed;
+            display: block;
             width: 48px;
             height: 48px;
             object-fit: contain;
@@ -71,7 +55,7 @@
         button {
             margin: 15px 5px;
             padding: 10px 20px;
-            cursor: pointer;
+            cursor: none;
         }
     </style>
 </head>
@@ -89,8 +73,9 @@
 
 <div id="viewer" onclick="closeViewer()">
     <img id="largeImage">
-    <img id="customCursor" src="images/node.gif">
 </div>
+
+<img id="customCursor" src="images/node.gif">
 
 <script>
     const images = [
@@ -107,15 +92,13 @@
     function openImage(index) {
         largeImage.src = images[index];
         viewer.style.display = "flex";
-        customCursor.style.display = "block";
     }
 
     function closeViewer() {
         viewer.style.display = "none";
-        customCursor.style.display = "none";
     }
 
-    viewer.addEventListener("mousemove", function(event) {
+    document.addEventListener("mousemove", function(event) {
         customCursor.style.left = event.clientX + "px";
         customCursor.style.top = event.clientY + "px";
     });
