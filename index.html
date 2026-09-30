@@ -165,7 +165,7 @@
     const correctSound = new Audio("sounds/warningbell1.wav");
 
     function checkAccess() {
-        if (accessInput.value === "infra") {
+        if (accessInput.value.toLowerCase() === "infra") {
             correctSound.currentTime = 0;
             correctSound.play();
             accessScreen.classList.add("fadeOut");
