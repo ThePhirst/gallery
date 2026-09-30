@@ -48,13 +48,24 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            cursor: default;
+            cursor: none;
         }
 
         #viewer img {
             max-width: 90%;
             max-height: 80%;
-            cursor: default;
+            cursor: none;
+        }
+
+        #customCursor {
+            display: none;
+            position: fixed;
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-6px, -6px);
         }
 
         button {
@@ -78,6 +89,7 @@
 
 <div id="viewer" onclick="closeViewer()">
     <img id="largeImage">
+    <img id="customCursor" src="images/node.gif">
 </div>
 
 <script>
@@ -88,14 +100,25 @@
         "images/teaser_4.jpg"
     ];
 
+    const viewer = document.getElementById("viewer");
+    const largeImage = document.getElementById("largeImage");
+    const customCursor = document.getElementById("customCursor");
+
     function openImage(index) {
-        document.getElementById("largeImage").src = images[index];
-        document.getElementById("viewer").style.display = "flex";
+        largeImage.src = images[index];
+        viewer.style.display = "flex";
+        customCursor.style.display = "block";
     }
 
     function closeViewer() {
-        document.getElementById("viewer").style.display = "none";
+        viewer.style.display = "none";
+        customCursor.style.display = "none";
     }
+
+    viewer.addEventListener("mousemove", function(event) {
+        customCursor.style.left = event.clientX + "px";
+        customCursor.style.top = event.clientY + "px";
+    });
 </script>
 
 </body>
