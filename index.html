@@ -14,43 +14,6 @@
             overflow-x: hidden;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            width: 140%;
-            height: 140%;
-            left: -20%;
-            top: -20%;
-            pointer-events: none;
-            z-index: -1;
-
-            background:
-                linear-gradient(
-                    45deg,
-                    rgba(120, 40, 180, 0.05) 25%,
-                    transparent 25%,
-                    transparent 75%,
-                    rgba(120, 40, 180, 0.05) 75%
-                ),
-                linear-gradient(
-                    45deg,
-                    rgba(120, 40, 180, 0.05) 25%,
-                    transparent 25%,
-                    transparent 75%,
-                    rgba(120, 40, 180, 0.05) 75%
-                );
-
-            background-size: 80px 80px;
-            background-position: 0 0, 40px 40px;
-
-            transform: translate(
-                calc(var(--parallax-x, 0px)),
-                calc(var(--parallax-y, 0px))
-            );
-
-            transition: transform 0.15s ease-out;
-        }
-
         h1 {
             text-align: center;
         }
@@ -133,14 +96,6 @@
     function closeViewer() {
         document.getElementById("viewer").style.display = "none";
     }
-
-    document.addEventListener("mousemove", function(event) {
-        const x = (event.clientX / window.innerWidth - 0.5) * 24;
-        const y = (event.clientY / window.innerHeight - 0.5) * 24;
-
-        document.documentElement.style.setProperty("--parallax-x", x + "px");
-        document.documentElement.style.setProperty("--parallax-y", y + "px");
-    });
 </script>
 
 </body>
