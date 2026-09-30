@@ -161,15 +161,21 @@
     const accessScreen = document.getElementById("accessScreen");
     const accessInput = document.getElementById("accessInput");
     const accessError = document.getElementById("accessError");
+    const incorrectSound = new Audio("sounds/friend_join.wav");
+    const correctSound = new Audio("sounds/warningbell1.wav");
 
     function checkAccess() {
         if (accessInput.value === "infra") {
+            correctSound.currentTime = 0;
+            correctSound.play();
             accessScreen.classList.add("fadeOut");
 
             setTimeout(function() {
                 accessScreen.style.display = "none";
             }, 1000);
         } else {
+            incorrectSound.currentTime = 0;
+            incorrectSound.play();
             accessError.style.display = "block";
             accessInput.value = "";
             accessInput.focus();
