@@ -29,6 +29,13 @@
             justify-content: center;
             flex-direction: column;
             z-index: 10000;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        #accessScreen.fadeOut {
+            opacity: 0;
+            pointer-events: none;
         }
 
         #accessScreen input {
@@ -157,7 +164,11 @@
 
     function checkAccess() {
         if (accessInput.value === "infra") {
-            accessScreen.style.display = "none";
+            accessScreen.classList.add("fadeOut");
+
+            setTimeout(function() {
+                accessScreen.style.display = "none";
+            }, 1000);
         } else {
             accessError.style.display = "block";
             accessInput.value = "";
