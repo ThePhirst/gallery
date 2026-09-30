@@ -41,6 +41,28 @@
             transform: scale(1.03);
         }
 
+        #viewer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+            cursor: none;
+        }
+
+        #largeImage {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            cursor: none;
+        }
+
         #customCursor {
             position: fixed;
             display: block;
@@ -50,12 +72,6 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-6px, -6px);
-        }
-
-        button {
-            margin: 15px 5px;
-            padding: 10px 20px;
-            cursor: none;
         }
     </style>
 </head>
