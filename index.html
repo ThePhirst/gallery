@@ -210,6 +210,8 @@
     const accessScreen = document.getElementById("accessScreen");
     const accessInput = document.getElementById("accessInput");
     const accessError = document.getElementById("accessError");
+    const normalCursor = "images/node.gif";
+    const hoveringCursor = "images/node_hovering.gif";
     const incorrectSound = new Audio("sounds/friend_join.wav");
     const correctSound = new Audio("sounds/warningbell1.wav");
 
@@ -249,6 +251,9 @@
     document.addEventListener("mousemove", function(event) {
         customCursor.style.left = event.clientX + "px";
         customCursor.style.top = event.clientY + "px";
+
+        const clickable = event.target.closest("a, button, [onclick]");
+        customCursor.src = clickable ? hoveringCursor : normalCursor;
     });
 </script>
 
